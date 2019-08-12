@@ -40,6 +40,20 @@ public class CustomerTest {
     }
 
     @Test
+    public void itShouldGenerateHtmlStatementForOneRegularRentalForOneDay() {
+        //given
+        Customer newCustomer = new Customer("James Bond");
+        String expected = "<H1>Rental Record for <B>James Bond</B></H1><BR>Regular-1 2.0<BR>Amount owed is <B>2.0</B><BR>You earned <B>1</B> frequent renter points";
+
+        //when
+        newCustomer.addRental(factory.defaultRegularRental(1));
+        String actual = newCustomer.htmlStatement();
+
+        //then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
     public void itShouldGenerateStatementForOneRegularRentalForMoreThanTwoDays() {
         //given
         Customer newCustomer = new Customer("James Bond");
